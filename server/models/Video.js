@@ -34,7 +34,7 @@ const videoSchema = mongoose.Schema({
     thumbnail: {                                         // 썸네일 이미지
         type: String
     }
-}, { timestamps: true });;
+}, { timestamps: true });
 
 const Video = mongoose.model('Video', videoSchema);
 

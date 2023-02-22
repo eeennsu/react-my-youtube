@@ -23,8 +23,7 @@ const DetailVideoPage = () => {
     const userId = useMemo(() => {
         return localStorage.getItem('userId');
     }, []);
-
-    
+     
     useEffect(() => {
         async function fetchData(){
             const response = await axios.post(`${VIDEO}/getVideoDetail`, params);
@@ -86,12 +85,11 @@ const DetailVideoPage = () => {
                             <Item actions={
                                 [ (userData._id === detailVideo?.writer._id) && <Delete videoId={detailVideo._id} />, 
                                 viewsAction, 
-                                userData.isAuth && <LikeDislike video userId={userId} videoId={params.videoId} />, 
+                                userData.isAuth && <LikeDislike video userId={userId} videoId={params.videoId} isAuth={userData.isAuth}/>, 
                                 subscribeAction
                                 ]}>
                                 <Item.Meta avatar={<Avatar src={detailVideo?.writer.image}/>} title={detailVideo?.writer.name} description={detailVideo?.description} />                            
-                            </Item>
-                        
+                            </Item>                        
                             <Comment commentList={comments} userId={userId} videoId={detailVideo._id} refresh={refresh}/>
                         </React.Fragment>) :
                         <LoadingComponent />

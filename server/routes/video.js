@@ -15,19 +15,19 @@ const storage = multer.diskStorage({
     // 파일의 이름
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}_${file.originalname}`);             // 1220013091339_hello
-    },  
-    
-    // 필터 
-    fileFilter: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        if(ext !== '.mp4') {
-            return cb(res.status(400).end('only mp4 or png is allowed'), false);
-        } 
-        cb(null, true);
-    }      
+    }
 });
 
-const upload = multer({ storage: storage }).single('file');
+// 필터 
+const fileFilter = (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    
+    if (ext === '.mp4') return cb(null, true);
+
+    cb(new Error('only mp4 is allowed'));
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter }).single('file');
 
 
 // 클라이언트에서 가져온 비디오를 서버에 저장한다
@@ -90,7 +90,7 @@ router.post('/thumbnail', (req, res) => {
 
 // 저장할 비디오를 셋업한다
 router.post('/setup', (req, res) => {
-
+    
     const video = new Video(req.body);
     video.save((err, data) => {
         if(err) return res.json({ videoSetupSuccess: false, err });

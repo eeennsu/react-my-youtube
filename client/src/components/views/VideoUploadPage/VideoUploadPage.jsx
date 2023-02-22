@@ -37,7 +37,7 @@ const VideoUploadPage = () => {
     const [duration, setDuration]     = useState('');                               // 업로드한 파일의 재생 시간
     const [thumbPath, setThumbPath]   = useState('');
 
-    const thumbnail = useCallback(({ getRootProps, getInputProps}) => {
+    const thumbnail = useCallback(({ getRootProps, getInputProps }) => {
         return (
             <div style={{ width: '290px', height: '240px', border: '1px solid lightgray', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center'}} {...getRootProps()}>
@@ -75,7 +75,6 @@ const VideoUploadPage = () => {
         };
         formData.append('file', files[0]);                          // 폼의 데이터에 추가
 
-
         const response = async () => {
             const result = await axios.post(`${VIDEO}/uploadfiles`, formData, config);
             const { videoUploadSuccess, filePath, filename } = result.data;
@@ -104,8 +103,7 @@ const VideoUploadPage = () => {
             }
         }
 
-        response();
-      
+        response();      
     }, [filePath, duration, thumbPath]);
 
     const onSubmitVideo = useCallback((e) => {

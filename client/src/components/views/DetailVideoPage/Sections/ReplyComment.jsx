@@ -4,7 +4,7 @@ import SingleComment from './SingleComment';
 const ReplyComment = ({ commentList, parentCommentId, userId, videoId, refresh }) => {
     const [replyCount, setReplyCount] = useState(0);
     const [onReplyComments, setOnReplyComments] = useState(false);
-
+    
     const handleChange = useCallback(() => {
         setOnReplyComments(state => !state);
     }, [onReplyComments]);
@@ -14,7 +14,7 @@ const ReplyComment = ({ commentList, parentCommentId, userId, videoId, refresh }
         let isReply = commentList.filter((v) => v.responseTo).filter((v, i) => v.responseTo === parentCommentId);
         setReplyCount(isReply.length);
     }, [commentList, parentCommentId]);
-
+        
 
     const renderReplyComments = useCallback(() => {
        return commentList.filter((v) => v.responseTo === parentCommentId).map((v, i) => {
@@ -25,10 +25,12 @@ const ReplyComment = ({ commentList, parentCommentId, userId, videoId, refresh }
         );})
     }, [onReplyComments, commentList, parentCommentId]);
 
+
     const viewerReplyComments = useMemo(() => {
         return onReplyComments && renderReplyComments()
     }, [onReplyComments, commentList, parentCommentId]);
-  
+    
+
     return (
         <React.Fragment>
             <div>

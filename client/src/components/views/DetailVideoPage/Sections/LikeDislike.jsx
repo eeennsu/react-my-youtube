@@ -57,13 +57,9 @@ const LikeDislike = ({ video, comment, userId, videoId, commentId, isAuth }) => 
         })();
     }, []);
 
-    const authCheck = useCallback(() => {
-        if(!isAuth){
-            message.error('로그인을 진행');
-        }
-    }, [isAuth]);
 
-    const upLike = useCallback(() => {
+
+    const upLike = () => {
 
         if(!isAuth){
             message.error('먼저 로그인을 진행해주세요!');
@@ -102,7 +98,7 @@ const LikeDislike = ({ video, comment, userId, videoId, commentId, isAuth }) => 
             })(); 
         }                    
         
-    }, [likeCount, isLike, dislikeCount, isDislike]);
+    };
 
     const upDislike = useCallback(() => {
         if(!isAuth){

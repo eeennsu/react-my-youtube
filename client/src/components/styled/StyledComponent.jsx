@@ -49,13 +49,11 @@ export const DivRelative = styled.div`
     position: relative;
 `;
 
-
 export const spin = keyframes`
     to {
         transform: rotate(360deg);
     }
 `
-
 export const LoadingContainer = styled.div`
     width: 80px;
     margin: 0 auto;

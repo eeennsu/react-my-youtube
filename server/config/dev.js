@@ -1,5 +1,5 @@
 module.exports = {
-    mongoURI: 'mongodb+srv://Eunsu:tyukk3467@boiler-plate.boin5dm.mongodb.net/?retryWrites=true&w=majority',
+    mongoURI: 
 }
 
 /*
